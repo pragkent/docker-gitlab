@@ -8,7 +8,7 @@ GITLAB_PAGES_URL=https://gitlab.com/gitlab-org/gitlab-pages/repository/archive.t
 
 GEM_CACHE_DIR="${GITLAB_BUILD_DIR}/cache"
 
-BUILD_DEPENDENCIES="gcc g++ make patch pkg-config cmake paxctl \
+BUILD_DEPENDENCIES="gcc g++ make patch pkg-config cmake paxctl xz \
   libc6-dev ruby${RUBY_VERSION}-dev \
   libmysqlclient-dev libpq-dev zlib1g-dev libyaml-dev libssl-dev \
   libgdbm-dev libreadline-dev libncurses5-dev libffi-dev \
