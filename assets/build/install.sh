@@ -99,6 +99,22 @@ mv gitlab-pages /usr/local/bin/
 # remove go
 rm -rf ${GITLAB_BUILD_DIR}/go${GOLANG_VERSION}.linux-amd64.tar.gz /tmp/go
 
+
+# download lego
+echo "Downloading lego v${LEGO_VERSION}..."
+wget -cq https://github.com/xenolf/lego/releases/download/v${LEGO_VERSION}/lego_linux_amd64.tar.xz -O ${GITLAB_BUILD_DIR}/lego-v${LEGO_VERSION}.tar.gz
+xz -d ${GITLAB_BUILD_DIR}/lego-v${LEGO_VERSION}.tar.gz
+tar -xvf ${GITLAB_BUILD_DIR}/lego.tar -C /tmp/
+mv /tmp/lego/lego /usr/local/bin/
+rm -rf ${GITLAB_BUILD_DIR}/lego-v${LEGO_VERSION}.tar.gz
+
+
+
+
+tar xf ${GITLAB_BUILD_DIR}/gitlab-pages-${GITLAB_PAGES_VERSION}.tar.gz --strip 1 -C ${GITLAB_PAGES_INSTALL_DIR}
+rm -rf ${GITLAB_BUILD_DIR}/gitlab-pages-${GITLAB_PAGES_VERSION}.tar.gz
+chown -R ${GITLAB_USER}: ${GITLAB_PAGES_INSTALL_DIR}
+
 # shallow clone gitlab-ce
 echo "Cloning gitlab-ce v.${GITLAB_VERSION}..."
 exec_as_git git clone -q -b v${GITLAB_VERSION} --depth 1 ${GITLAB_CLONE_URL} ${GITLAB_INSTALL_DIR}
