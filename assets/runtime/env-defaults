@@ -1,5 +1,28 @@
 #!/bin/bash
 
+# usage: file_env VAR [DEFAULT]
+#    ie: file_env 'XYZ_DB_PASSWORD' 'example'
+# (will allow for "$XYZ_DB_PASSWORD_FILE" to fill in the value of
+#  "$XYZ_DB_PASSWORD" from a file, especially for Docker's secrets feature)
+file_env() {
+	local var="$1"
+	local fileVar="${var}_FILE"
+	local def="${2:-}"
+	if [ "${!var:-}" ] && [ "${!fileVar:-}" ]; then
+		echo >&2 "error: both $var and $fileVar are set (but are exclusive)"
+		exit 1
+	fi
+	local val="$def"
+	if [ "${!var:-}" ]; then
+		val="${!var}"
+	elif [ "${!fileVar:-}" ]; then
+		val="$(< "${!fileVar}")"
+	fi
+	export "$var"="$val"
+	unset "$fileVar"
+}
+
+
 DEBUG=${DEBUG:-$DEBUG_ENTRYPOINT}
 
 ## GITLAB CORE
@@ -38,7 +61,7 @@ DB_HOST=${DB_HOST:-}
 DB_PORT=${DB_PORT:-}
 DB_NAME=${DB_NAME:-}
 DB_USER=${DB_USER:-}
-DB_PASS=${DB_PASS:-}
+file_env 'DB_PASS'
 DB_POOL=${DB_POOL:-10}
 
 # backward compatibility
@@ -49,7 +72,7 @@ esac
 
 ## REDIS
 REDIS_HOST=${REDIS_HOST:-}
-REDIS_PORT=${REDIS_PORT:-}
+REDIS_PORT=${REDIS_PORT:-6379}
 REDIS_DB_NUMBER=${REDIS_DB_NUMBER:-0}
 
 ## SIDEKIQ
@@ -189,7 +212,7 @@ SMTP_DOMAIN=${SMTP_DOMAIN:-www.gmail.com}
 SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
 SMTP_PORT=${SMTP_PORT:-587}
 SMTP_USER=${SMTP_USER:-}
-SMTP_PASS=${SMTP_PASS:-}
+file_env 'SMTP_PASS'
 SMTP_OPENSSL_VERIFY_MODE=${SMTP_OPENSSL_VERIFY_MODE:-none}
 SMTP_STARTTLS=${SMTP_STARTTLS:-true}
 SMTP_TLS=${SMTP_TLS:-false}
