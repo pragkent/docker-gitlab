@@ -31,7 +31,7 @@ services:
 
   gitlab:
     restart: always
-    image: pragkent/gitlab:9.1.4
+    image: pragkent/gitlab:9.2.2
     depends_on:
     - redis
     - postgresql
