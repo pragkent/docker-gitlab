@@ -3,6 +3,39 @@
 This file only reflects the changes that are made in this image. Please refer to the upstream GitLab [CHANGELOG](
 https://gitlab.com/gitlab-org/gitlab-ce/blob/master/CHANGELOG.md) for the list of changes in GitLab.
 
+**9.3.7**
+- gitlab: upgrade to CE v9.3.7
+
+**9.3.6**
+- gitlab: upgrade to CE v9.3.6
+
+**9.3.5**
+- gitlab: upgrade to CE v9.3.5
+
+**9.3.4**
+- gitlab: upgrade to CE v9.3.4
+
+**9.3.3**
+- gitlab: upgrade to CE v9.3.3
+
+**9.3.2**
+- gitlab: upgrade to CE v9.3.2
+
+**9.3.1**
+- gitlab: upgrade to CE v9.3.1
+
+**9.3.0-1**
+- Add the missing Gitaly config to let git commands over http/https working 
+
+**9.3.0**
+- gitlab: upgrade to CE v9.3.0
+- update baseimage to `14.04.20170608`
+- Add `DB_COLLATION` (For MySQL related doesn't recognize by postgres)
+- Add `GITLAB_PIPELINE_SCHEDULE_WORKER_CRON` 
+- Add `GITALY_ENABLED`
+- Add `GITALY_SOCKET_PATH`
+- Add `GITALY_ADDRESS`
+
 **9.2.7**
 - gitlab: upgrade to CE v9.2.7
 
