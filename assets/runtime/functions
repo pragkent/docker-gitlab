@@ -445,6 +445,8 @@ gitlab_configure_ldap() {
     LDAP_UID \
     LDAP_METHOD \
     LDAP_VERIFY_SSL \
+    LDAP_CA_FILE \
+    LDAP_SSL_VERSION \
     LDAP_BIND_DN \
     LDAP_PASS \
     LDAP_TIMEOUT \
@@ -759,8 +761,7 @@ gitlab_configure_sidekiq() {
 gitlab_configure_backups_schedule() {
   case ${GITLAB_BACKUP_SCHEDULE} in
     daily|weekly|monthly)
-      if [[ ! $(crontab -u ${GITLAB_USER} -l >/tmp/cron.${GITLAB_USER} 2>/dev/null) || \
-            ! $(grep -q 'bundle exec rake gitlab:backup:create' /tmp/cron.${GITLAB_USER}) ]]; then
+      if ! crontab -u ${GITLAB_USER} -l >/tmp/cron.${GITLAB_USER} 2>/dev/null || ! grep -q 'bundle exec rake gitlab:backup:create' /tmp/cron.${GITLAB_USER}; then
         echo "Configuring gitlab::backups::schedule..."
         read hour min <<< ${GITLAB_BACKUP_TIME//[:]/ }
         day_of_month=*
