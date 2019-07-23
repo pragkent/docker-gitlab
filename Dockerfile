@@ -1,16 +1,16 @@
-FROM ubuntu:xenial-20181218
+FROM ubuntu:xenial-20190222
 
 ARG BUILD_DATE
 ARG VCS_REF
-ARG VERSION=11.6.1
+ARG VERSION=12.0.0
 
 ENV GITLAB_VERSION=${VERSION} \
-    RUBY_VERSION=2.5 \
-    GOLANG_VERSION=1.11.4 \
-    GITLAB_SHELL_VERSION=8.4.3 \
-    GITLAB_WORKHORSE_VERSION=7.6.0 \
-    GITLAB_PAGES_VERSION=1.3.1 \
-    GITALY_SERVER_VERSION=1.7.1 \
+    RUBY_VERSION=2.6 \
+    GOLANG_VERSION=1.12.6 \
+    GITLAB_SHELL_VERSION=9.3.0 \
+    GITLAB_WORKHORSE_VERSION=8.7.0 \
+    GITLAB_PAGES_VERSION=1.6.1 \
+    GITALY_SERVER_VERSION=1.47.0 \
     GITLAB_USER="git" \
     GITLAB_HOME="/home/git" \
     GITLAB_LOG_DIR="/var/log/gitlab" \
@@ -44,14 +44,14 @@ RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
       sudo supervisor logrotate locales curl \
       nginx openssh-server mysql-client postgresql-client redis-tools \
-      git-core gnupg2 ruby${RUBY_VERSION} python2.7 python-docutils nodejs yarn gettext-base \
+      git-core gnupg2 ruby${RUBY_VERSION} python3 python3-docutils nodejs yarn gettext-base \
       libmysqlclient20 libpq5 zlib1g libyaml-0-2 libssl1.0.0 \
       libgdbm3 libreadline6 libncurses5 libffi6 \
-      libxml2 libxslt1.1 libcurl3 libicu55 libre2-dev tzdata unzip \
+      libxml2 libxslt1.1 libcurl3 libicu55 libre2-dev tzdata unzip libimage-exiftool-perl \
  && update-locale LANG=C.UTF-8 LC_MESSAGES=POSIX \
  && locale-gen en_US.UTF-8 \
  && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales \
- && gem install --no-document bundler \
+ && gem install --no-document bundler -v 1.17.3 \
  && rm -rf /var/lib/apt/lists/*
 
 COPY assets/build/ ${GITLAB_BUILD_DIR}/

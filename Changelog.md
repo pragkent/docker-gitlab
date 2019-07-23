@@ -3,6 +3,113 @@
 This file only reflects the changes that are made in this image. Please refer to the upstream GitLab [CHANGELOG](
 https://gitlab.com/gitlab-org/gitlab-ce/blob/master/CHANGELOG.md) for the list of changes in GitLab.
 
+**12.0.0**
+- gitlab: upgrade CE to v12.0.0
+- Update gitaly to 1.47.0
+- Update gitlab-shell to 9.3.0
+- Update gitlab-pages to 1.6.1
+- ruby: update to 2.6
+- python: update to 3
+
+**11.11.3**
+- gitlab: upgrade CE to v11.11.3
+- Update gitaly to 1.42.4
+- Update golang to 1.12.6
+
+**11.11.2**
+- gitlab: upgrade CE to v11.11.2
+- Update gitaly to 1.42.3
+
+**11.11.1**
+- gitlab: upgrade CE to v11.11.1
+- Update gitaly to 1.42.2
+
+**11.11.0**
+- gitlab: upgrade CE to v11.11.0
+- Update gitaly to 1.42.0
+- Update gitlab-shell to 9.1.0
+- Update gitlab-workhorse to 8.7.0
+
+**11.10.4**
+- gitlab: upgrade CE to v11.10.4
+
+**11.10.3**
+- gitlab: upgrade CE to v11.10.3
+
+**11.10.2**
+- gitlab: upgrade CE to v11.10.2
+
+**11.10.1**
+- gitlab: upgrade CE to v11.10.1
+
+**11.10.0**
+- gitlab: upgrade CE to v11.10.0
+
+**11.9.8**
+- gitlab: upgrade CE to v11.9.8
+
+**11.9.7**
+- gitlab: upgrade CE to v11.9.7
+
+**11.9.6**
+- gitlab: upgrade CE to v11.9.6
+
+**11.9.5**
+- gitlab: upgrade CE to v11.9.5
+
+**11.9.4**
+- gitlab: upgrade CE to v11.9.4
+- Update gitlab-workhorse to 8.3.3
+
+**11.9.1**
+- gitlab: upgrade CE to v11.9.1
+- Update gitaly to 1.27.1
+
+**11.9.0**
+- gitlab: upgrade CE to v11.9.0
+
+**11.8.3**
+- gitlab: upgrade CE to v11.8.3
+
+**11.8.2**
+- gitlab: upgrade CE to v11.8.2
+
+**11.8.1**
+- gitlab: upgrade CE to v11.8.1
+
+**11.8.0**
+- gitlab: upgrade CE to v11.8.0
+- Update gitlab-workhorse to 8.3.1
+- Update gitaly to 1.20.0
+- Update gitlab-pages to 1.5.0
+
+**11.7.5**
+- gitlab: upgrade CE to v11.7.5
+
+**11.7.4**
+- gitlab: upgrade CE to v11.7.4
+
+**11.7.3**
+- gitlab: upgrade CE to v11.7.3
+- Update gitlab-workhorse to 8.1.1
+- Update gitaly to 1.13.0
+- Update gitlab-pages to 1.4.0
+
+**11.7.0**
+- gitlab: upgrade CE to v11.7.0
+
+**11.6.5**
+- gitlab: upgrade CE to v11.6.5
+
+**11.6.4**
+- gitlab: upgrade CE to v11.6.4
+
+**11.6.3**
+- gitlab: upgrade CE to v11.6.3
+
+**11.6.2**
+- gitlab: upgrade CE to v11.6.2
+
 **11.6.1**
 - gitlab: upgrade CE to v11.6.1
 - Added `GITLAB_IMPERSONATION_ENABLED`
@@ -98,7 +205,7 @@ https://gitlab.com/gitlab-org/gitlab-ce/blob/master/CHANGELOG.md) for the list o
 - gitlab: upgrade CE to v11.3.0
 - Fix backup config stripping for when AWS & GCS backups are disabled [#1725](https://github.com/sameersbn/docker-gitlab/pull/1725)
 - Correct Backup Date format for selective backups [#1699](https://github.com/sameersbn/docker-gitlab/pull/1699)
-- Fix gitlay-ssh symlink to enable rebase/squash in forks 
+- Fix gitlay-ssh symlink to enable rebase/squash in forks
 
 **11.2.3**
 - gitlab: upgrade CE to v11.2.3

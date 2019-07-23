@@ -62,6 +62,8 @@ EOF
 exec_as_git git config --global core.autocrlf input
 exec_as_git git config --global gc.auto 0
 exec_as_git git config --global repack.writeBitmaps true
+exec_as_git git config --global receive.advertisePushOptions true
+
 
 # shallow clone gitlab-ce
 echo "Cloning gitlab-ce v.${GITLAB_VERSION}..."
@@ -166,7 +168,7 @@ exec_as_git yarn install --production --pure-lockfile
 exec_as_git yarn add ajv@^4.0.0
 
 echo "Compiling assets. Please be patient, this could take a while..."
-exec_as_git bundle exec rake gitlab:assets:compile USE_DB=false SKIP_STORAGE_VALIDATION=true
+exec_as_git bundle exec rake gitlab:assets:compile USE_DB=false SKIP_STORAGE_VALIDATION=true NODE_OPTIONS="--max-old-space-size=4096"
 
 # remove auto generated ${GITLAB_DATA_DIR}/config/secrets.yml
 rm -rf ${GITLAB_DATA_DIR}/config/secrets.yml
@@ -398,6 +400,19 @@ autostart=true
 autorestart=true
 stdout_logfile=${GITLAB_LOG_DIR}/supervisor/%(program_name)s.log
 stderr_logfile=${GITLAB_LOG_DIR}/supervisor/%(program_name)s.log
+EOF
+
+
+cat > /etc/supervisor/conf.d/groups.conf <<EOF
+[group:core]
+programs=gitaly
+priority=5
+[group:gitlab]
+programs=unicorn,gitlab-workhorse
+priority=10
+[group:gitlab_extensions]
+programs=sshd,nginx,mail_room,cron
+priority=20
 EOF
 
 # purge build dependencies and cleanup apt
