@@ -6,5 +6,6 @@ services:
   - docker
 
 script:
+  - pip install travis-wait-improved
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
   - ci/travis
