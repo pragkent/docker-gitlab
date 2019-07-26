@@ -411,7 +411,7 @@ priority=5
 programs=unicorn,gitlab-workhorse
 priority=10
 [group:gitlab_extensions]
-programs=sshd,nginx,mail_room,cron
+programs=sshd,mail_room,cron
 priority=20
 EOF
 
